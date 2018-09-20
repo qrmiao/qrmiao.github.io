@@ -5,13 +5,23 @@
   
   <title>QR的技术专栏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="项目部署上线指南准备上线 上线前的检查工作。 1python manage.py check --deploy  将DEBUG设置为False并配置ALLOWED_HOSTS。 12DEBUG = FalseALLOWED_HOSTS = [&apos;*&apos;]  安全相关的配置。 123456789101112131415161718192021# 保持HTTPS连接的时间SECURE_HSTS_SECON">
+<meta property="og:type" content="article">
 <meta property="og:title" content="QR的技术专栏">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/20/项目部署上线指南/index.html">
 <meta property="og:site_name" content="QR的技术专栏">
+<meta property="og:description" content="项目部署上线指南准备上线 上线前的检查工作。 1python manage.py check --deploy  将DEBUG设置为False并配置ALLOWED_HOSTS。 12DEBUG = FalseALLOWED_HOSTS = [&apos;*&apos;]  安全相关的配置。 123456789101112131415161718192021# 保持HTTPS连接的时间SECURE_HSTS_SECON">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-domain.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-keeprecord.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-dnslist.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-resolve-settings.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-certificate.png">
+<meta property="og:updated_time" content="2018-09-17T07:29:42.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QR的技术专栏">
+<meta name="twitter:description" content="项目部署上线指南准备上线 上线前的检查工作。 1python manage.py check --deploy  将DEBUG设置为False并配置ALLOWED_HOSTS。 12DEBUG = FalseALLOWED_HOSTS = [&apos;*&apos;]  安全相关的配置。 123456789101112131415161718192021# 保持HTTPS连接的时间SECURE_HSTS_SECON">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/20/项目部署上线指南/res/aliyun-domain.png">
   
     <link rel="alternate" href="/atom.xml" title="QR的技术专栏" type="application/atom+xml">
   
@@ -60,114 +70,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Docker简易上手指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/20/Docker简易上手指南/" class="article-date">
-  <time datetime="2018-09-20T06:40:35.795Z" itemprop="datePublished">2018-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Docker简易上手指南"><a href="#Docker简易上手指南" class="headerlink" title="Docker简易上手指南"></a>Docker简易上手指南</h2><h3 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h3><p>软件开发中最为麻烦的事情可能就是配置环境了。由于用户使用的操作系统具有多样性，即便使用跨平台的开发语言（如Java和Python）都不能保证代码能够在各种平台下都可以正常的运转，而且可能在不同的环境下我们的软件需要依赖的其他软件包也是不一样的。</p>
-<p>那么问题来了，我们再安装软件的时候可不可以把软件运行的环境一并安装？也就是说在安装软件的时候，我们是不是可以把原始环境一模一样地复制过来呢？</p>
-<p>虚拟机（virtual machine）就是带环境安装的一种解决方案，它可以在一种操作系统里面运行另一种操作系统，比如在Windows系统里面运行Linux系统，在macOS上运行Windows，而应用程序对此毫无感知。使用过虚拟机的人都知道，虚拟机用起来跟真实系统一模一样，而对于虚拟机的宿主系统来说，虚拟机就是一个普通文件，不需要了就删掉，对宿主系统或者其他的程序并没有影响。但是虚拟机通常会占用较多的系统资源，启动和关闭也非常的缓慢，总之用户体验没有想象中的那么好。</p>
-<p>Docker属于对Linux容器技术的一种封装，它提供了简单易用的容器使用接口，是目前最流行的 Linux 容器解决方案。Docker将应用程序与该程序的依赖打包在一个文件里面，运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了Docker就再也不用担心环境问题了。</p>
-<p><img src="./res/docker_vs_vm.png" alt=""></p>
-<p>目前，Docker主要用于几下几个方面：</p>
-<ol>
-<li>提供一次性的环境。</li>
-<li>提供弹性的云服务（利用Docker很容易实现扩容和收缩）。</li>
-<li>实践微服务架构（隔离真实环境在容器中运行多个服务）。</li>
-</ol>
-<h3 id="CentOS下的安装和使用"><a href="#CentOS下的安装和使用" class="headerlink" title="CentOS下的安装和使用"></a>CentOS下的安装和使用</h3><p>下面的讲解以CentOS为例，使用<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank" rel="noopener">Ubuntu</a>、<a href="https://docs.docker.com/docker-for-mac/install/" target="_blank" rel="noopener">macOS</a>或<a href="https://docs.docker.com/docker-for-windows/install/" target="_blank" rel="noopener">Windows</a>的用户可以通过点击链接了解这些平台下如何安装和使用Docker。</p>
-<ol start="0">
-<li>确定操作系统内核版本（CentOS 7要求64位，内核版本3.10+；CentOS 6要求64位，内核版本2.6+）。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
-<ol>
-<li>在CentOS下使用yum安装Docker并启动。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker-io</span><br><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>检视Docker的信息和版本。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>运行Hello-World项目来测试Docker。第一次运行时由于本地没有hello-world的镜像因此需要联网进行下载。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
-<pre><code>也可以先用下面的命令下载镜像，然后再来运行。
-</code></pre> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull &lt;name&gt;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>运行镜像文件。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run &lt;image-id&gt;</span><br><span class="line">docker run -p &lt;port1&gt;:&lt;port2&gt; &lt;name&gt;</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>查看镜像文件。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>删除镜像文件。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi &lt;name&gt;</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>查看正在运行容器。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li>停止运行的容器。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;container-id&gt;</span><br><span class="line">docker stop &lt;name&gt;</span><br></pre></td></tr></table></figure>
-<p>对于那些不会自动终止的容器，就可以用下面的方式来停止。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container kill &lt;container-id&gt;</span><br></pre></td></tr></table></figure>
-<p>在Ubuntu（内核版本3.10+）下面安装和启动Docker，可以按照如下的步骤进行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install docker-ce</span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
-<p>在有必要的情况下，可以更换Ubuntu软件下载源来提升下载速度，具体的做法请参照<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a>。</p>
-<p>安装Docker后，由于直接访问dockerhub下载镜像会非常缓慢，建议更换国内镜像，可以通过修改<code>/etc/docker/daemon.js</code>文件来做到。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"http://hub-mirror.c.163.com"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Docker实战"><a href="#Docker实战" class="headerlink" title="Docker实战"></a>Docker实战</h3><h4 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h4><p>Docker的使用肯定不止上面这点东西，但是有了这些知识之后，我们已经可以开始感受Docker的强大之处。下面我们就基于Docker来搭建HTTP服务器（Nginx）环境。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p 80:80 --rm --name mynginx nginx</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>说明：上面的参数<code>-d</code>表示容器在后台运行；<code>-p</code>是用来映射容器的端口到宿主机的端口；<code>--rm</code>表示容器停止后自动删除容器，例如通过<code>docker container stop mynginx</code>以后，容器就没有了；<code>--name</code>是自定义容器的名字。</p>
-</blockquote>
-<p>如果需要将自己的页面部署到Nginx上，可以使用容器的拷贝命令将当前文件夹下所有的文件和文件夹拷贝到容器的指定目录中。当然也可以从容器中拷贝文件到我们指定的路径下。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container cp ./index.html mynginx:/usr/local/nginx/html</span><br></pre></td></tr></table></figure>
-<p>如果不愿意拷贝文件也可以将文件夹映射到Nginx保存页面文件的目录。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p 80:80 --rm --name mynginx --volume "$PWD/html":/usr/share/nginx/html nginx</span><br></pre></td></tr></table></figure>
-<h4 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h4><p>下载MySQL镜像。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker search mysql</span><br><span class="line">docker pull mysql:5.7</span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
-<p>启动容器运行MySQL。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7</span><br></pre></td></tr></table></figure>
-<p>在使用MySQL 8.x时可能会遇到“error 2059: Authentication plugin ‘caching_sha2_password’ cannot be loaded”的问题，这是因为MySQL 8.x默认使用了名为“caching_sha2_password”的机制对用户口令进行了更好的保护，但是如果客户端没有更新有可能无法基于这种方式进行身份验证，可以按照下面的方式加以解决。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql8-docker /bin/bash</span><br></pre></td></tr></table></figure>
-<p>进入容器的交互式Shell之后，可以首先利用MySQL的客户端工具连接MySQL服务器。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Your MySQL connection id is 16</span><br><span class="line">Server version: 8.0.12 MySQL Community Server - GPL</span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"><span class="meta">mysql&gt;</span></span><br></pre></td></tr></table></figure>
-<p>接下来通过SQL来修改用户口令就可以了。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'root'</span>@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">with</span> mysql_native_password <span class="keyword">by</span> <span class="string">'123456'</span> <span class="keyword">password</span> <span class="keyword">expire</span> <span class="keyword">never</span>;</span><br></pre></td></tr></table></figure>
-<p>当然，如果愿意你也可以查看一下用户表检查是否修改成功。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">user</span>, host, <span class="keyword">plugin</span>, authentication_string <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line">+<span class="comment">------+-----------+-----------------------+-------------------------------------------+</span></span><br><span class="line">| user | host      | plugin                | authentication_string                     |</span><br><span class="line">+<span class="comment">------+-----------+-----------------------+-------------------------------------------+</span></span><br><span class="line">| root | %         | mysql_native_password | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span><br><span class="line">| root | localhost | mysql_native_password | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span><br><span class="line">+<span class="comment">------+-----------+-----------------------+-------------------------------------------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<p>接下来就已经可以访问你的MySQL服务器啦，当然远程连接的时候不要忘了在防火墙上开启对应的端口。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/20/Docker简易上手指南/" data-id="cjma7nqye00005g5k87p1li72" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-项目部署上线指南" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-项目部署上线指南" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/20/项目部署上线指南/" class="article-date">
   <time datetime="2018-09-20T06:40:35.777Z" itemprop="datePublished">2018-09-20</time>
@@ -355,369 +258,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-网络API接口设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/20/网络API接口设计/" class="article-date">
-  <time datetime="2018-09-20T06:40:35.767Z" itemprop="datePublished">2018-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>]## 网络API接口设计</p>
-<p>手机App以及使用了Ajax技术或做了前后端分离的页面都需要通过网络API（Application Programming Interface）和后台进行交互，所谓API，指的应用程序的编程接口；而网络API通畅指的是基于HTTP或HTTPS协议的一个URL（统一资源定位符），通过这个URL我们可以让服务器对某个资源进行操作并返回操作的结果。基于HTTP(S)协议最大的好处就在于访问起来非常的简单方便，而且没有编程语言和应用环境上的差别。</p>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="关键问题"><a href="#关键问题" class="headerlink" title="关键问题"></a>关键问题</h4><p>为移动端或者PC端设计网络API接口一个非常重要的原则是：根据业务实体而不是用户界面或操作来设计。如果API接口的设计是根据用户的操作或者界面上的功能设置来设计，随着需求的变更，用户界面也会进行调整，需要的数据也在发生变化，那么后端开发者就要不停的调整API，或者给一个API设计出多个版本，这些都会使项目的开发和维护成本增加。</p>
-<p>下面是某个网站开放API的接口，可以看出API的设计是围绕业务实体来进行的，而且都做到了“见名知意”。</p>
-<table>
-<thead>
-<tr>
-<th>评论</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>comments/show</td>
-<td>获取某条微博的评论列表</td>
-</tr>
-<tr>
-<td>comments/by_me</td>
-<td>自己的评论列表</td>
-</tr>
-<tr>
-<td>comments/to_me</td>
-<td>收到的评论列表</td>
-</tr>
-<tr>
-<td>comments/mentions</td>
-<td>@了自己的评论列表</td>
-</tr>
-<tr>
-<td>comments/create</td>
-<td>创建一条评论</td>
-</tr>
-<tr>
-<td>comments/destroy</td>
-<td>删除一条评论</td>
-</tr>
-<tr>
-<td>comments/reply</td>
-<td>回复一条评论</td>
-</tr>
-</tbody>
-</table>
-<p>注意：上面的API接口并不是REST风格的，关于REST的知识，可以阅读阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">《理解RESTful架构》</a>以及<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">《RESTful API设计指南》</a>。</p>
-<p>API接口返回的数据通常都是JSON或XML格式，我们这里不讨论后者。对于JSON格式的数据，我们需要做到不要返回null这的值，因为这样的值一旦处置失当，会给移动端的开发带来麻烦（移动端可能使用强类型语言）。要解决这个问题可以从源头入手，在设计数据库的时候，尽量给每个字段都加上“not null”约束或者设置合理的默认值约束。</p>
-<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><ol>
-<li>更新提示问题：设计一个每次使用系统首先要访问的API，该API会向移动端返回系统更新的相关信息，这样就可以提升用户更新App了。</li>
-<li>版本升级问题：API版本升级时应该考虑对低版本的兼容，同时要让新版本和旧版本都能够被访问，可以在URL中包含版本信息或者在将版本号放在HTTP(S)协议头部，关于这个问题有很多的争论，有兴趣的可以看看<a href="https://stackoverflow.com/questions/972226/how-to-version-rest-uris" target="_blank" rel="noopener">stack overflow</a>上面对这个问题的讨论。</li>
-<li>图片尺寸问题：移动端对于一张图片可能需要不同的尺寸，可以在获取图片时传入尺寸参数并获取对应的资源；更好的做法是直接使用云存储或CDN（直接提供了图片缩放的功能），这样可以加速对资源的访问。</li>
-</ol>
-<h3 id="文档撰写"><a href="#文档撰写" class="headerlink" title="文档撰写"></a>文档撰写</h3><p>下面以设计评论接口为例，简单说明接口文档应该如何撰写。</p>
-<h4 id="评论接口"><a href="#评论接口" class="headerlink" title="评论接口"></a>评论接口</h4><p>全局返回状态码</p>
-<table>
-<thead>
-<tr>
-<th>返回码</th>
-<th>返回信息</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10000</td>
-<td>获取评论成功</td>
-<td></td>
-</tr>
-<tr>
-<td>10001</td>
-<td>创建评论成功</td>
-<td></td>
-</tr>
-<tr>
-<td>10002</td>
-<td>无法创建评论</td>
-<td>创建评论时因违反审核机制而无法创建</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>评论已被删除</td>
-<td>查看评论时评论因不和谐因素已被删除</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>……</td>
-<td>……</td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><p><strong>GET</strong> <code>/comments/{article-id}</code></p>
-<p>开发者：王大锤</p>
-<p>最后更新时间：2018年8月10日</p>
-<p>标签：v 1.0</p>
-<p>接口说明：获取指定文章的所有评论</p>
-<p>使用帮助：默认返回20条数据，需要在请求头中设置身份标识（key）</p>
-<p>请求参数：</p>
-<p>| 参数名 | 类型   | 是否必填 | 参数位置 | 说明                                 |<br>| —— | —— | ——– | ——– | ———————————— |<br>| page   | 整数   | 否       | 查询参数 | 页码，默认值1                        |<br>| size   | 整数   | 否       | 查询参数 | 每次获取评论数量（10~100），默认值20 |<br>| key    | 字符串 | 是       | 请求头   | 用户的身份标识                       |</p>
-<p>响应信息：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">10000</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"获取评论成功"</span>,</span><br><span class="line">    <span class="attr">"page"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"size"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">"totalPage"</span>: <span class="number">35</span>,</span><br><span class="line">    <span class="attr">"contents"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"userId"</span>: <span class="number">1700095</span>,</span><br><span class="line">            <span class="attr">"nickname"</span>: <span class="string">"王大锤"</span>,</span><br><span class="line">            <span class="attr">"pubDate"</span>: <span class="string">"2018年7月31日"</span>,</span><br><span class="line">            <span class="attr">"content"</span>: <span class="string">"小编是不是有病呀"</span>,</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        	"userId", 1995322,</span><br><span class="line">            "nickname": "白元芳",</span><br><span class="line">            "pubDate": "2018年8月2日",</span><br><span class="line">            "content": "楼上说得好",</span><br><span class="line">            /* ... */</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>POST</strong> <code>/comments/{article-id}</code></p>
-<p>开发者：王大锤</p>
-<p>最后更新时间：2018年8月10日</p>
-<p>标签：v 1.0</p>
-<p>接口说明：为指定的文章创建评论</p>
-<p>使用帮助：暂无</p>
-<p>请求参数：</p>
-<p>| 参数名  | 类型   | 是否必填 | 参数位置 | 说明       |<br>| ——- | —— | ——– | ——– | ———- |<br>| userId  | 字符串 | 是       | 消息体   | 用户ID     |<br>| key     | 字符串 | 是       | 请求头   | 用户的令牌 |<br>| content | 字符串 | 是       | 消息体   | 评论的内容 |</p>
-<p>响应信息：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">10001</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"创建评论成功"</span>,</span><br><span class="line">    <span class="attr">"comment"</span>: &#123;</span><br><span class="line">        <span class="attr">"pubDate"</span>: <span class="string">"2018年7月31日"</span>,</span><br><span class="line">        <span class="attr">"content"</span>: <span class="string">"小编是不是有病呀"</span></span><br><span class="line">        /* ... */</span><br><span class="line">    &#125;</span><br><span class="line">    /* ... */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+    <a href="/2018/09/20/Docker简易上手指南/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/20/网络API接口设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/20/网络API接口设计/" data-id="cjma7nqyx00035g5kkxt5y7cn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-常见反爬策略及应对方案" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/20/常见反爬策略及应对方案/" class="article-date">
-  <time datetime="2018-09-20T06:40:35.753Z" itemprop="datePublished">2018-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="常见反爬策略及应对方案"><a href="#常见反爬策略及应对方案" class="headerlink" title="常见反爬策略及应对方案"></a>常见反爬策略及应对方案</h2><ol>
-<li><p>构造合理的HTTP请求头。</p>
-<ul>
-<li><p>Accept</p>
-</li>
-<li><p>User-Agent - 三方库fake-useragent</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fake_useragent <span class="keyword">import</span> UserAgent</span><br><span class="line">ua = UserAgent()</span><br><span class="line"></span><br><span class="line">ua.ie</span><br><span class="line"><span class="comment"># Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US);</span></span><br><span class="line">ua.msie</span><br><span class="line"><span class="comment"># Mozilla/5.0 (compatible; MSIE 10.0; Macintosh; Intel Mac OS X 10_7_3; Trident/6.0)'</span></span><br><span class="line">ua[<span class="string">'Internet Explorer'</span>]</span><br><span class="line"><span class="comment"># Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)</span></span><br><span class="line">ua.opera</span><br><span class="line"><span class="comment"># Opera/9.80 (X11; Linux i686; U; ru) Presto/2.8.131 Version/11.11</span></span><br><span class="line">ua.chrome</span><br><span class="line"><span class="comment"># Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2'</span></span><br><span class="line">ua.google</span><br><span class="line"><span class="comment"># Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1290.1 Safari/537.13</span></span><br><span class="line">ua[<span class="string">'google chrome'</span>]</span><br><span class="line"><span class="comment"># Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11</span></span><br><span class="line">ua.firefox</span><br><span class="line"><span class="comment"># Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1</span></span><br><span class="line">ua.ff</span><br><span class="line"><span class="comment"># Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:15.0) Gecko/20100101 Firefox/15.0.1</span></span><br><span class="line">ua.safari</span><br><span class="line"><span class="comment"># Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># and the best one, random via real world browser usage statistic</span></span><br><span class="line">ua.random</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Referer</p>
-</li>
-<li><p>Accept-Encoding</p>
-</li>
-<li><p>Accept-Language</p>
-</li>
-</ul>
-</li>
-<li>检查网站生成的Cookie。<ul>
-<li>有用的插件：<a href="http://www.editthiscookie.com/" target="_blank" rel="noopener">EditThisCookie</a></li>
-<li>如何处理脚本动态生成的Cookie</li>
-</ul>
-</li>
-<li>抓取动态内容。<ul>
-<li>Selenium</li>
-<li>PhantomJS</li>
-</ul>
-</li>
-<li>限制爬取的速度。</li>
-<li>处理表单中的隐藏域。<ul>
-<li>在读取到隐藏域之前不要提交表单</li>
-<li>用RoboBrowser这样的工具辅助提交表单</li>
-</ul>
-</li>
-<li><p>处理表单中的验证码。</p>
-<ul>
-<li><p>OCR（Tesseract） - 商业项目一般不考虑 </p>
-</li>
-<li><p>专业识别平台 - 超级鹰 / 云打码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChaoClient</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, username, password, soft_id)</span>:</span></span><br><span class="line">        self.username = username</span><br><span class="line">        password =  password.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">        self.password = md5(password).hexdigest()</span><br><span class="line">        self.soft_id = soft_id</span><br><span class="line">        self.base_params = &#123;</span><br><span class="line">            <span class="string">'user'</span>: self.username,</span><br><span class="line">            <span class="string">'pass2'</span>: self.password,</span><br><span class="line">            <span class="string">'softid'</span>: self.soft_id,</span><br><span class="line">        &#125;</span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            <span class="string">'Connection'</span>: <span class="string">'Keep-Alive'</span>,</span><br><span class="line">            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)'</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post_pic</span><span class="params">(self, im, codetype)</span>:</span></span><br><span class="line">        params = &#123;</span><br><span class="line">            <span class="string">'codetype'</span>: codetype,</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        files = &#123;<span class="string">'userfile'</span>: (<span class="string">'captcha.jpg'</span>, im)&#125;</span><br><span class="line">        r = requests.post(<span class="string">'http://upload.chaojiying.net/Upload/Processing.php'</span>, data=params, files=files, headers=self.headers)</span><br><span class="line">        <span class="keyword">return</span> r.json()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    client = ChaoClient(<span class="string">'用户名'</span>, <span class="string">'密码'</span>, <span class="string">'软件ID'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'captcha.jpg'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> file:                                                </span><br><span class="line">        print(client.post_pic(file, <span class="number">1902</span>))</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>绕开“陷阱”。</p>
-<ul>
-<li>网页上有诱使爬虫爬取的爬取的隐藏链接（陷阱或蜜罐）</li>
-<li>通过PhantomJS判断链接是否可见或在可视区域</li>
-</ul>
-</li>
-<li><p>隐藏身份。</p>
-<ul>
-<li><p>代理服务 -  快代理 / 讯代理 / 芝麻代理 / 蘑菇代理 / 云代理</p>
-<p><a href="https://cuiqingcai.com/5094.html" target="_blank" rel="noopener">《爬虫代理哪家强？十大付费代理详细对比评测出炉！》</a></p>
-</li>
-<li><p>洋葱路由 - 国内需要翻墙才能使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum -y install tor</span><br><span class="line">useradd admin -d /home/admin</span><br><span class="line">passwd admin</span><br><span class="line">chown -R admin:admin /home/admin</span><br><span class="line">chown -R admin:admin /var/run/tor</span><br><span class="line">tor</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/20/常见反爬策略及应对方案/" data-id="cjma7nqyz00045g5kpxqsdju3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python惯例-如何编写Pythonic的代码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/11/Python惯例-如何编写Pythonic的代码/" class="article-date">
-  <time datetime="2018-09-11T00:40:58.635Z" itemprop="datePublished">2018-09-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Python惯例"><a href="#Python惯例" class="headerlink" title="Python惯例"></a>Python惯例</h2><p>“惯例”这个词指的是“习惯的做法”，与这个词对应的英文单词叫“idiom”。由于Python跟其他很多编程语言在语法和使用上还是有比较显著的差别，因此作为一个Python开发者如果不能掌握这些惯例，就无法写出“Pythonic”的代码。下面我们总结了一些在Python开发中的惯用的代码。</p>
-<ol>
-<li><p>让代码既可以被导入又可以被执行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用下面的方式判断逻辑“真”或“假”。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x:</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> x:</span><br></pre></td></tr></table></figure>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'jackfrued'</span></span><br><span class="line">fruits = [<span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'grape'</span>]</span><br><span class="line">owners = &#123;<span class="string">'1001'</span>: <span class="string">'骆昊'</span>, <span class="string">'1002'</span>: <span class="string">'王大锤'</span>&#125;</span><br><span class="line"><span class="keyword">if</span> name <span class="keyword">and</span> fruits <span class="keyword">and</span> owners:</span><br><span class="line">    print(<span class="string">'I love fruits!'</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'jackfrued'</span></span><br><span class="line">fruits = [<span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'grape'</span>]</span><br><span class="line">owners = &#123;<span class="string">'1001'</span>: <span class="string">'骆昊'</span>, <span class="string">'1002'</span>: <span class="string">'王大锤'</span>&#125;</span><br><span class="line"><span class="keyword">if</span> name != <span class="string">''</span> <span class="keyword">and</span> len(fruits) &gt; <span class="number">0</span> <span class="keyword">and</span> owners != &#123;&#125;:</span><br><span class="line">    print(<span class="string">'I love fruits!'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>善于使用in运算符。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x <span class="keyword">in</span> items: <span class="comment"># 包含</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> items: <span class="comment"># 迭代</span></span><br></pre></td></tr></table></figure>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'Hao LUO'</span></span><br><span class="line"><span class="keyword">if</span> <span class="string">'L'</span> <span class="keyword">in</span> name:</span><br><span class="line">    print(<span class="string">'The name has an L in it.'</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'Hao LUO'</span></span><br><span class="line"><span class="keyword">if</span> name.find(<span class="string">'L'</span>) != <span class="number">-1</span>:</span><br><span class="line">    print(<span class="string">'This name has an L in it!'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不使用临时变量交换两个值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用序列构建字符串。</p>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chars = [<span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>, <span class="string">'f'</span>, <span class="string">'r'</span>, <span class="string">'u'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>]</span><br><span class="line">name = <span class="string">''</span>.join(chars)</span><br><span class="line">print(name)  <span class="comment"># jackfrued</span></span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chars = [<span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>, <span class="string">'f'</span>, <span class="string">'r'</span>, <span class="string">'u'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>]</span><br><span class="line">name = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> chars:</span><br><span class="line">    name += char</span><br><span class="line">print(name)  <span class="comment"># jackfrued</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>EAFP优于LBYL。</p>
-<p>EAFP - <strong>E</strong>asier to <strong>A</strong>sk <strong>F</strong>orgiveness than <strong>P</strong>ermission.</p>
-<p>LBYL - <strong>L</strong>ook <strong>B</strong>efore <strong>Y</strong>ou <strong>L</strong>eap.</p>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'x'</span>: <span class="string">'5'</span>&#125;</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    value = int(d[<span class="string">'x'</span>])</span><br><span class="line">    print(value)</span><br><span class="line"><span class="keyword">except</span> (KeyError, TypeError, ValueError):</span><br><span class="line">    value = <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'x'</span>: <span class="string">'5'</span>&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="string">'x'</span> <span class="keyword">in</span> d <span class="keyword">and</span> isinstance(d[<span class="string">'x'</span>], str) \</span><br><span class="line">		<span class="keyword">and</span> d[<span class="string">'x'</span>].isdigit():</span><br><span class="line">    value = int(d[<span class="string">'x'</span>])</span><br><span class="line">    print(value)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    value = <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用enumerate进行迭代。</p>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fruits = [<span class="string">'orange'</span>, <span class="string">'grape'</span>, <span class="string">'pitaya'</span>, <span class="string">'blueberry'</span>]</span><br><span class="line"><span class="keyword">for</span> index, fruit <span class="keyword">in</span> enumerate(fruits):</span><br><span class="line">	print(index, <span class="string">':'</span>, fruit)</span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fruits = [<span class="string">'orange'</span>, <span class="string">'grape'</span>, <span class="string">'pitaya'</span>, <span class="string">'blueberry'</span>]</span><br><span class="line">index = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:</span><br><span class="line">    print(index, <span class="string">':'</span>, fruit)</span><br><span class="line">    index += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用生成式生成列表。</p>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">7</span>, <span class="number">20</span>, <span class="number">3</span>, <span class="number">15</span>, <span class="number">11</span>]</span><br><span class="line">result = [num * <span class="number">3</span> <span class="keyword">for</span> num <span class="keyword">in</span> data <span class="keyword">if</span> num &gt; <span class="number">10</span>]</span><br><span class="line">print(result)  <span class="comment"># [60, 45, 33]</span></span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">7</span>, <span class="number">20</span>, <span class="number">3</span>, <span class="number">15</span>, <span class="number">11</span>]</span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">10</span>:</span><br><span class="line">        result.append(i * <span class="number">3</span>)</span><br><span class="line">print(result)  <span class="comment"># [60, 45, 33]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用zip组合键和值来创建字典。</p>
-<p><strong>好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">keys = [<span class="string">'1001'</span>, <span class="string">'1002'</span>, <span class="string">'1003'</span>]</span><br><span class="line">values = [<span class="string">'骆昊'</span>, <span class="string">'王大锤'</span>, <span class="string">'白元芳'</span>]</span><br><span class="line">d = dict(zip(keys, values))</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
-<p><strong>不好</strong>的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">keys = [<span class="string">'1001'</span>, <span class="string">'1002'</span>, <span class="string">'1003'</span>]</span><br><span class="line">values = [<span class="string">'骆昊'</span>, <span class="string">'王大锤'</span>, <span class="string">'白元芳'</span>]</span><br><span class="line">d = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i, key <span class="keyword">in</span> enumerate(keys):</span><br><span class="line">    d[key] = values[i]</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p><strong>说明</strong>：这篇文章的内容来自于网络，有兴趣的读者可以阅读<a href="http://safehammad.com/downloads/python-idioms-2014-01-16.pdf" target="_blank" rel="noopener">原文</a>。</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/11/Python惯例-如何编写Pythonic的代码/" data-id="cjma7nqyt00015g5kfnl6bpex" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PEP 8风格指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/11/PEP 8风格指南/" class="article-date">
-  <time datetime="2018-09-11T00:40:55.921Z" itemprop="datePublished">2018-09-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="PEP-8风格指南"><a href="#PEP-8风格指南" class="headerlink" title="PEP 8风格指南"></a>PEP 8风格指南</h2><p>PEP是Python Enhancement Proposal的缩写，通常翻译为“Python增强提案”。每个PEP都是一份为Python社区提供的指导Python往更好的方向发展的技术文档，其中的第8号增强提案（PEP 8）是针对Python语言编订的代码风格指南。尽管我们可以在保证语法没有问题的前提下随意书写Python代码，但是在实际开发中，采用一致的风格书写出可读性强的代码是每个专业的程序员应该做到的事情，也是每个公司的编程规范中会提出的要求，这些在多人协作开发一个项目（团队开发）的时候显得尤为重要。我们可以从Python官方网站的<a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8链接</a>中找到该文档，下面我们对该文档的关键部分做一个简单的总结。</p>
-<h3 id="空格的使用"><a href="#空格的使用" class="headerlink" title="空格的使用"></a>空格的使用</h3><ol>
-<li><u>使用空格来表示缩进而不要用制表符（Tab）。</u>这一点对习惯了其他编程语言的人来说会觉得不可理喻，因为绝大多数程序员都用Tab来表示缩进，但是要知道Python并没有像C/C++或Java那样的用花括号来构造一个代码块的语法，在Python中分支和循环结构都使用缩进来表示哪些代码属于哪一个层级，鉴于此Python代码对缩进以及缩进宽度的依赖比其他很多语言都强得多。在不同的编辑器中，Tab的宽度可能是2个、4个或8个字符，甚至是其他更离谱的值，用Tab来表示缩进对Python代码来说并不可取。</li>
-<li><u>和语法相关的每一层缩进都用4个空格来表示。</u></li>
-<li><u>每行的字符数不要超过79个字符，如果表达式因太长而占据了多行，除了首行之外的其余各行都应该在正常的缩进宽度上再加上4个空格。</u></li>
-<li><u>函数和类的定义，代码前后都要用两个空行进行分隔。</u></li>
-<li><u>在同一个类中，各个方法之间应该用一个空行进行分隔。</u></li>
-<li><u>二元运算符的左右两侧应该保留一个空格，而且只要一个空格就好。</u></li>
-</ol>
-<h3 id="标识符命名"><a href="#标识符命名" class="headerlink" title="标识符命名"></a>标识符命名</h3><p>PEP 8倡导用不同的命名风格来命名Python中不同的标识符，以便在阅读代码时能够通过标识符的名称来确定该标识符在Python中扮演了怎样的角色（在这一点上，Python自己的内置模块以及某些第三方模块都做得并不是很好）。</p>
-<ol>
-<li><u>变量、函数和属性应该使用小写字母来拼写，如果有多个单词就使用下划线进行连接。</u></li>
-<li><u>类中受保护的实例属性，应该以一个下划线开头。</u></li>
-<li><u>类中私有的实例属性，应该以两个下划线开头。</u></li>
-<li><u>类和异常的命名，应该每个单词首字母大写。</u></li>
-<li><u>模块级别的常量，应该采用全大写字母，如果有多个单词就用下划线进行连接。</u></li>
-<li><u>类的实例方法，应该把第一个参数命名为<code>self</code>以表示对象自身。</u></li>
-<li><u>类的类方法，应该把第一个参数命名为<code>cls</code>以表示该类自身。</u></li>
-</ol>
-<h3 id="表达式和语句"><a href="#表达式和语句" class="headerlink" title="表达式和语句"></a>表达式和语句</h3><p>在Python之禅（可以使用<code>import this</code>查看）中有这么一句名言：“There should be one– and preferably only one –obvious way to do it.”，翻译成中文是“做一件事应该有而且最好只有一种确切的做法”，这句话传达的思想在PEP 8中也是无处不在的。</p>
-<ol>
-<li><u>采用内联形式的否定词，而不要把否定词放在整个表达式的前面。</u>例如<code>if a is not b</code>就比<code>if not a is b</code>更容易让人理解。</li>
-<li><u>不要用检查长度的方式来判断字符串、列表等是否为<code>None</code>或者没有元素</u>，应该用<code>if not x</code>这样的写法来检查它。</li>
-<li><u>就算<code>if</code>分支、<code>for</code>循环、<code>except</code>异常捕获等中只有一行代码，也不要将代码和<code>if</code>、<code>for</code>、<code>except</code>等写在一起，分开写才会让代码更清晰。</u></li>
-<li><u><code>import</code>语句总是放在文件开头的地方。</u></li>
-<li><u>引入模块的时候，<code>from math import sqrt</code>比<code>import math</code>更好。</u></li>
-<li><u>如果有多个<code>import</code>语句，应该将其分为三部分，从上到下分别是Python标准模块、第三方模块和自定义模块，每个部分内部应该按照模块名称的字母表顺序来排列。</u></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/11/PEP 8风格指南/" data-id="cjma7nqyw00025g5kx0m9o5eh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
